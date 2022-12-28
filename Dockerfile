@@ -18,7 +18,7 @@ ARG BASE_LAUNCH=/opt/nvidia/nvidia_entrypoint.sh
 ARG JLAB_VER=unset
 ARG JLAB_EXTIERS=2
 ARG WITH_CHINESE="false"
-ARG WITH_EXTRA_APPS="cgo"
+ARG WITH_EXTRA_APPS=""
 ARG ADDR_PROXY=unset
 ARG DEBIAN_FRONTEND=noninteractive
 

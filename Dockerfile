@@ -5,18 +5,19 @@
 #
 
 # Pull base image.
-ARG BASE_IMAGE=nvcr.io/nvidia/pytorch:22.03-py3
+ARG BASE_IMAGE=nvcr.io/nvidia/cuda:11.6.2-cudnn8-runtime-ubuntu20.04
 FROM $BASE_IMAGE
 LABEL maintainer="Yuchen Jin <cainmagi@gmail.com>" \
       author="Yuchen Jin <cainmagi@gmail.com>" \
       description="xUbuntu desktop dockerfile for ubuntu 16.04, 18.04 and 20.04 images." \
-      version="1.7"
+      version="1.7" \
+      modifiedby="Pratik Mehta"
 ARG BASE_LAUNCH=/opt/nvidia/nvidia_entrypoint.sh
 # Since 22.03 ?: /opt/nvidia/nvidia_entrypoint.sh
 # Before: /usr/local/bin/nvidia_entrypoint.sh
 ARG JLAB_VER=unset
 ARG JLAB_EXTIERS=2
-ARG WITH_CHINESE="true"
+ARG WITH_CHINESE="false"
 ARG WITH_EXTRA_APPS="cgo"
 ARG ADDR_PROXY=unset
 ARG DEBIAN_FRONTEND=noninteractive

@@ -41,8 +41,7 @@ RUN bash /root/scripts/install-base MODE=check
 
 # Install extra packages
 RUN bash /root/scripts/install-desktop MODE=apps JLAB_VER=${JLAB_VER} JLAB_EXTIERS=${JLAB_EXTIERS}
-# The following step is not stable, so we move it here.
-RUN bash /root/scripts/install-desktop-exts MODE=vscodelocal USER_ROOT=/home/xubuntu
+# The following step is not stable, so we move it here. -removed most stuff - pmehta
 RUN bash /root/docker-configs/detach MODE=shortcuts
 
 # Install modern vncserver and themes

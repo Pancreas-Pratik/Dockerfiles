@@ -157,13 +157,7 @@ then
     # Install poular open-sourced apps.
     apt-get install -y firefox qt5-default qt5-doc-html qt5-image-formats-plugins qt5-style-plugins codeblocks vlc smplayer gedit okular gnome-screenshot pdf2svg || fail
 
-    # Install CodeBlocks Chinese Localization
-    if [ "x${WITH_CHINESE}" = "xtrue" ]
-    then
-        mkdir -p /usr/share/codeblocks/locale/zh_CN || fail
-        wget -O /usr/share/codeblocks/locale/zh_CN/CodeBlocks.mo https://github.com/cainmagi/Dockerfiles/releases/download/xubuntu-v1.4-u20.04/CodeBlocks_zhCN.mo || fail
-        chmod +rwx /usr/share/codeblocks/locale --recursive || fail
-    fi
+
 
     # Install evince.
     if [ "x${UBUNTU_VER}" = "xfocal" ]
@@ -369,7 +363,7 @@ then
         if [ "x${CUR_PY_VER}" = "xpy37+" ] || [ "x${CUR_PY_VER}" = "xpy36" ]; then
             msg "Installation for the Jupyter Lab: conda mode."
             # Run the script with conda.
-            wget -O /root/scripts/install-jlab-conda https://raw.githubusercontent.com/cainmagi/Dockerfiles/jlab-v1.4/scripts/install-jlab-conda || fail
+            wget -O /root/scripts/install-jlab-conda https://raw.githubusercontent.com/Pancreas-Pratik/Dockerfiles/jupyterlab/scripts/install-jlab-conda || fail
             chmod +x /root/scripts/install-jlab-conda || fail
             run_with_cargo "bash /root/scripts/install-jlab-conda version=${JLAB_VERSION} ex_tiers=${JLAB_EXTRA_TIERS} py_ver=${CUR_PY_VER}" || fail
             HASUSED_CONDA="true"
@@ -378,7 +372,7 @@ then
     if [ "x${HASUSED_CONDA}" != "xtrue" ]; then
         msg "Installation for the Jupyter Lab: pip mode."
         # Run the script with pip.
-        wget -O /root/scripts/install-jlab https://raw.githubusercontent.com/cainmagi/Dockerfiles/jlab-v1.4/scripts/install-jlab || fail
+        wget -O /root/scripts/install-jlab https://raw.githubusercontent.com/Pancreas-Pratik/Dockerfiles/jupyterlab/scripts/install-jlab || fail
         chmod +x /root/scripts/install-jlab || fail
         run_with_cargo "bash /root/scripts/install-jlab version=${JLAB_VERSION} ex_tiers=${JLAB_EXTRA_TIERS} py_ver=${CUR_PY_VER}" || fail
     fi

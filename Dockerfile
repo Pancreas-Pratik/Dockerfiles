@@ -43,11 +43,6 @@ RUN bash /root/scripts/install-base MODE=check
 RUN bash /root/scripts/install-desktop MODE=apps JLAB_VER=${JLAB_VER} JLAB_EXTIERS=${JLAB_EXTIERS}
 # The following step is not stable, so we move it here.
 RUN bash /root/scripts/install-desktop-exts MODE=vscodelocal USER_ROOT=/home/xubuntu
-COPY scripts/install-exapps /root/scripts/
-RUN chmod +x /root/scripts/install-exapps && bash /root/scripts/install-exapps EXAPPS=${WITH_EXTRA_APPS} REQAPPS=pae
-RUN bash /root/scripts/install-exapps EXAPPS=${WITH_EXTRA_APPS} REQAPPS=gnoa
-RUN bash /root/scripts/install-exapps EXAPPS=${WITH_EXTRA_APPS} REQAPPS=ckm
-RUN bash /root/scripts/install-exapps EXAPPS=${WITH_EXTRA_APPS} REQAPPS=x
 RUN bash /root/docker-configs/detach MODE=shortcuts
 
 # Install modern vncserver and themes

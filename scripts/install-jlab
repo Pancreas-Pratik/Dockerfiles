@@ -85,7 +85,7 @@ do
         VALUE=$(echo $ARGUMENT | cut -f2 -d=)   
     fi
     case "$KEY" in
-        --norust)    SET_RUSTC=false ;;
+        --norust)    SET_RUSTC=true ;;
         version)     VERSION=${VALUE} ;;
         ver)         VERSION=${VALUE} ;;
         VERSION)     VERSION=${VALUE} ;;
@@ -110,6 +110,8 @@ fi
 if [ "x${VERSION}" = "xunset" ]
 then
     python3 -m pip install jupyterlab || fail
+    install_nvm 0.39.3 || fail
+    install_nodejs 18.12.1 || fail
 else
     # Prepare dependencies
     apt-get update -qq || fail
@@ -118,7 +120,7 @@ else
     # Install rustc and meson.
     if [ "x${SET_RUSTC}" = "xtrue" ]; then
         if ! nvm_has "cargo" ; then
-            msg "Install Rust-lang, Cargo 1.60.0."
+            msg "Install Rust-lang and cargo new."
             if [ "x${USE_CURL}" == "x1" ]
             then
                 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y || fail
@@ -126,8 +128,8 @@ else
                 wget -O- https://sh.rustup.rs | sh -s -- -y || fail
             fi
             source $HOME/.cargo/env || fail
-            rustup toolchain install 1.60.0 || fail
-            rustup default 1.60.0 || fail
+            rustup toolchain install stab;e || fail
+            rustup default stable || fail
             cargo install cargo-c || fail
         fi
     fi

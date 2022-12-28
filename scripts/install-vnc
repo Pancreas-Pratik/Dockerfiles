@@ -69,17 +69,8 @@ then
     if [ "x${UBUNTU_VER}" = "xfocal" ]
     then
         apt-get -y install fontconfig-config fonts-dejavu-core libbsd0 libc-dev-bin libc6-dev libcrypt-dev libdrm-amdgpu1 libdrm-common libdrm-intel1 libdrm-nouveau2 libdrm-radeon1 libdrm2 libedit2 libelf1 libexpat1 libfontconfig1 libfontenc-dev libfontenc1 libfreetype-dev libfreetype6 libfreetype6-dev libgl1 libgl1-mesa-dri libglapi-mesa libglu1-mesa libglvnd0 libglx-mesa0 libglx0 libice6 libjpeg-turbo8 libllvm11 libpciaccess0 libpixman-1-0 libpng-dev libpng-tools libpng16-16 libpthread-stubs0-dev libsensors-config libsensors5 libsm6 libvulkan1 libwayland-client0 libx11-6 libx11-data libx11-dev libx11-xcb1 libxau-dev libxau6 libxaw7 libxcb-xkb-dev libxcb-dri2-0 libxcb-dri3-0 libxcb-glx0 libxcb-present0 libxcb-randr0 libxcb-shape0 libxcb-sync1 libxcb-xfixes0 libxcb1 libxcb1-dev libxcomposite1 libxcursor1 libxdamage1 libxdmcp-dev libxdmcp6 libxext6 libxfixes3 libxfont-dev libxfont2 libxft2 libxi6 libxinerama1 libxkbfile1 libxmu6 libxmuu1 libxpm4 libxrandr2 libxrender1 libxshmfence1 libxt6 libxtst6 libxv1 libxxf86dga1 libxxf86vm1 linux-libc-dev manpages manpages-dev mesa-vulkan-drivers ucf x11-common x11-utils x11-xkb-utils x11proto-core-dev x11proto-dev xauth xorg-sgml-doctools xtrans-dev zlib1g-dev glibc-doc freetype2-doc pciutils lm-sensors libx11-doc libxcb-doc man-db mesa-utils || fail
-        #apt-get install tigervnc-common tigervnc-standalone-server
         apt-get -y update || fail && apt-get -y upgrade || fail && apt-get -f -y install || fail && apt-get -y dist-upgrade || fail && apt-get -y autoremove || fail && apt-get -y autoclean || fail
-
-        wget -O tigervncserver_install.deb https://github.com/cainmagi/Dockerfiles/releases/download/tigervncserver-12/tigervncserver_1.12.80+20220412gitafd114ee-1ubuntu1_amd64.deb || fail
-        wget -O tigervncserver https://github.com/cainmagi/Dockerfiles/releases/download/tigervncserver-11/vncserver_1.11.80+20210616git9ec1f360-1ubuntu1_amd64 || fail
-        apt-get -y install ./tigervncserver_install.deb || fail
-        cp -f tigervncserver /usr/bin || fail
-        chmod ugo+x /usr/bin/tigervncserver || fail
-        ln -s /usr/bin/tigervncserver /usr/bin/vncserver || fail
-        rm -f tigervncserver_install.deb || fail
-        rm -f tigervncserver || fail
+        apt-get -y install tigervnc-common tigervnc-standalone-server tigervnc-xorg-extension tigervnc-viewer
     fi
 
     if [ "x${UBUNTU_VER}" = "xbionic" ]
@@ -136,7 +127,7 @@ then
     if [ "x${CUR_PY_VER}" != "xpy36" ] && [ "x${CUR_PY_VER}" != "xpy37+" ]
     then
         cd websockify || fail
-        git checkout v0.9.0
+        git checkout v0.11.0
     fi
 
     # Fix font issues
@@ -157,10 +148,10 @@ then
     mkdir -p /usr/share || fail
     if [ "x${UBUNTU_VER}" = "xfocal" ] || [ "x${UBUNTU_VER}" = "xbionic" ]
     then
-        msg "Installing basic theme pack (part 1) v1.7."
+        msg "omit -Installing basic theme pack (part 1) v1.7."
         wget -O- https://github.com/cainmagi/Dockerfiles/releases/download/xubuntu-v1.7-u20.04/share-basic-ubuntu-20-04-p1.tar.xz | tar xJ -C /usr/share || fail
     else
-        msg "Installing basic theme pack v1.2."
+        msg "omit - Installing basic theme pack v1.2."
         wget -O- https://github.com/cainmagi/Dockerfiles/releases/download/xubuntu-tf-v1.25/share.tar.gz | tar xz -C /usr/share || fail
     fi
     if [ "x${UBUNTU_VER}" = "xfocal" ]

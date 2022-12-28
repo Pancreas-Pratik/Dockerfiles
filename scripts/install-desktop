@@ -185,7 +185,6 @@ then
         apt-get install -y nomacs nomacs-l10n || fail
         apt-get install -y hdf-compass || fail
         apt-get install -y stacer gnome-system-monitor || fail
-        apt-get install -y vim-gnome notepadqq || fail
     fi
 
     if [ "x${UBUNTU_VER}" = "xbionic" ]

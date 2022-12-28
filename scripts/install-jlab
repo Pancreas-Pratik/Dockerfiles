@@ -74,7 +74,7 @@ function py_fix_wrapt_version {
 
 VERSION=unset
 EXTRA_TIERS=1
-SET_RUSTC=true
+SET_RUSTC=false
 CUR_PYTHON_VER="py37+"
 
 for ARGUMENT in "$@"

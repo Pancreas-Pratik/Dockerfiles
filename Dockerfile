@@ -2,10 +2,10 @@
 # XUbuntu Desktop self-loaded Dockerfile
 #
 # BASE_IMAGE
-#
+
 
 # Pull base image.
-ARG BASE_IMAGE=nvcr.io/nvidia/cuda:11.6.2-cudnn8-runtime-ubuntu20.04
+ARG BASE_IMAGE=nvcr.io/nvidia/cuda:11.5.0-runtime-ubuntu20.04
 FROM $BASE_IMAGE
 LABEL maintainer="Yuchen Jin <cainmagi@gmail.com>" \
       author="Yuchen Jin <cainmagi@gmail.com>" \
@@ -64,6 +64,9 @@ RUN chmod +x /usr/local/bin/docker-entrypoint && chmod +x /usr/local/bin/user-ma
 EXPOSE 5212
 EXPOSE 5901
 EXPOSE 6080
+EXPOSE 5555
+EXPOSE 4444
+EXPOSE 3333
 
 # Define default command.
 USER xubuntu

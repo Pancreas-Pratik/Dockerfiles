@@ -246,8 +246,7 @@ then
     apt-get install -f -y || fail && apt-get upgrade -y || fail && apt-get -y dist-upgrade || fail
 
 
-    # Copy scirpts.
-    bash /root/scripts/install-desktop-exts MODE=scripts USER_ROOT=${USER_ROOT} || fail
+
 
     # Install Python/Pip.
     if [ "x${CUR_PY_VER}" == "xpy37+" ]
